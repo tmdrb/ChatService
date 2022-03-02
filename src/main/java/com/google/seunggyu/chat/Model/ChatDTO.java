@@ -4,8 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
+
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.util.Date;
 
 
 @Data
@@ -29,5 +31,5 @@ public class ChatDTO {
     private ChattingRoom chattingRoom;
 
     @CreationTimestamp
-    private Timestamp timestamp;
+    private Date timestamp;
 }

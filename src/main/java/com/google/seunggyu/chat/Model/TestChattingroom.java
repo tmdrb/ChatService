@@ -1,15 +1,13 @@
 package com.google.seunggyu.chat.Model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.ArrayList;
 
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Builder
 public class TestChattingroom {
