@@ -1,48 +1,50 @@
 package com.google.seunggyu.chat.Controller;
 
-import com.google.seunggyu.chat.Model.ChatDTO;
-import com.google.seunggyu.chat.Model.ChattingRoom;
-import com.google.seunggyu.chat.Model.TestUserDTO;
+import com.google.seunggyu.chat.Model.*;
 import com.google.seunggyu.chat.Service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Optional;
 
-@RestController("/chat")
+@RestController
+@RequestMapping("/chat")
 public class ChattingController {
+
+
+
+    //Rest API를 이용한 채팅
+    /*
 
     @Autowired
     TestService testService;
 
     @GetMapping("/Mymain")
-    public ChattingRoom getMyChattingRoom(){
+    public HashMap getMyChattingRoom(){
 
-        return null;
+        return testService.getChat();
+    }
+
+    @GetMapping("/makechatroom/{chat_id}")
+    public String makechatroom(@PathVariable("chat_id")String chat_id){
+
+        return testService.makeChatroom(chat_id);
+    }
+
+
+
+    @PostMapping("/{chat_id}/send")
+    public void send(@PathVariable("chat_id") String chat_id, @RequestBody TestDTO testDTO){
+
+        testService.chat(chat_id,testDTO.getContent(),testDTO.getUserDTO());
     }
 
     @GetMapping("/{chat_id}")
-    public ChatDTO getChatDTO(@PathVariable("chat_id") String chat_id){
-
-        return null;
-    }
-
-
-
-    @GetMapping("/{chat_id}/send")
-    public void send(@PathVariable("chat_id") String chat_id, @RequestBody String content, @RequestBody TestUserDTO user){
-        testService.chat(chat_id,content,user);
-    }
-
-    @GetMapping("/{chat_id}")
-    public String getChatMap(@PathVariable("chat_id") String chat_id){
+    public Optional<String> getChatMap(@PathVariable("chat_id") String chat_id){
 
         return testService.seechat(chat_id);
     }
-    @PostMapping("/{chat_id}/send")
-    public ChatDTO send(@PathVariable("chat_id") String chat_id, @RequestBody ChatDTO chatdto){
-
-        return null;
-    }
+*/
 
 }

@@ -9,16 +9,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 @Service
 public class TestService implements ChatService {
 
-    TestDTO chat = new TestDTO();
-
-    TestUserDTO user = new TestUserDTO();
 
 
-    HashMap<String,TestChattingroom> chatmap = new HashMap<>();
+    HashMap<String, TestChattingroom> chatmap = new HashMap<>();
+
 
 
     @Override
@@ -28,6 +27,9 @@ public class TestService implements ChatService {
 
     @Override
     public void chat(String chatroomname,String content, TestUserDTO user) {
+        TestDTO chat = new TestDTO();
+
+
         chat.setContent(content);
         chat.setUserDTO(user);
         chatmap.get(chatroomname).getChatlist().add(chat);
@@ -35,8 +37,9 @@ public class TestService implements ChatService {
     }
 
     @Override
-    public String seechat(String chatroomname) {
-        return chatmap.get(chatroomname).getChatlist().toString();
+    public Optional<String> seechat(String chatroomname) {
+        Optional<String> optionalS = Optional.of(chatmap.get(chatroomname).getChatlist().toString());
+        return optionalS;
     }
 
     @Override
@@ -58,5 +61,9 @@ public class TestService implements ChatService {
 
         chatmap.put(chatroomname,chattingroom);
         return chatroomname + "이 개설되었습니다.";
+    }
+
+    public HashMap getChat(){
+        return chatmap;
     }
 }
