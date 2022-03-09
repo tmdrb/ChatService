@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class AOPConfig {
 private static final Logger logger = LogManager.getLogger(AOPConfig.class);
 
-@Around("within(com.google.seunggyu.chat.Controller..*)")
+@Around("within(com.google.seunggyu.chat.Controller..* )")
 private Object getLog(ProceedingJoinPoint pjp)throws Throwable{
 
     Object request = getRequest();

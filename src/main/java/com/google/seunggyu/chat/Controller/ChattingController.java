@@ -1,19 +1,52 @@
 package com.google.seunggyu.chat.Controller;
 
 import com.google.seunggyu.chat.Model.*;
-import com.google.seunggyu.chat.Service.TestService;
+import com.google.seunggyu.chat.Repoistory.ChatRoomUserRepository;
+import com.google.seunggyu.chat.Repoistory.UserRepository;
+import com.google.seunggyu.chat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/chat")
 public class ChattingController {
 
+    @Autowired
+    private WebsocketTestService websocketTestService;
 
+    @Autowired
+    ChatRoomService chatRoomService;
 
+    @Autowired
+    ChatRoomUserService chatRoomUserService;
+
+    @Autowired
+    ChatRoomUserRepository chatRoomUserRepository;
+
+    @Autowired
+    UserService userService;
+
+    @PostMapping("/makechat")
+    public String Mkchat(@RequestParam("chatname") String name){
+        chatRoomService.makeChatroom(name,userService.getUser("tmdrb"));
+
+        return name + "방 개설완료";
+    }
+
+    @PostMapping("/joinchat")
+    public String JoinChat(@RequestParam("chatroom_id") String chatroom_id){
+
+        return "dl님 참여완료";
+    }
+
+    @GetMapping("/seechat")
+    public String SeeChattingroom(){
+        System.out.println(chatRoomUserRepository.findByChattingRoom_chatroomid("a659df9e-8e2c-4f72-8bd0-2bbb039259da").toString());
+        return "";
+    }
     //Rest API를 이용한 채팅
     /*
 
