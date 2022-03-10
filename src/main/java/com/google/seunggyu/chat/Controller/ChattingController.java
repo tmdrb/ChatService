@@ -5,6 +5,9 @@ import com.google.seunggyu.chat.Repoistory.ChatRoomUserRepository;
 import com.google.seunggyu.chat.Repoistory.UserRepository;
 import com.google.seunggyu.chat.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -28,6 +31,17 @@ public class ChattingController {
 
     @Autowired
     UserService userService;
+
+
+
+
+    @MessageMapping("/test")
+    @SendTo("/sub/chat/1")
+    public String enter(ChatMessageDTO chatMessageDTO){
+
+        chatMessageDTO.setMessage(chatMessageDTO.getSender() + "님 입장");
+        return "hihoi";
+    }
 
     @PostMapping("/makechat")
     public String Mkchat(@RequestParam("chatname") String name){
